@@ -1,0 +1,8 @@
+streamlit
+langchain>=0.2.9
+langchain-huggingface
+langchain-chroma
+chromadb
+youtube-transcript-api
+openai
+python-dotenv
