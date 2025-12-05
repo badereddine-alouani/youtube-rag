@@ -28,9 +28,12 @@ def run_interface():
                         st.session_state.rag_chain = create_rag_chain(url)
                         st.session_state.last_url = url
 
-                    answer = st.session_state.rag_chain.invoke(question)
-                    st.success("✅ Answer:")
-                    st.markdown(f"> {answer}")
+                    if st.session_state.rag_chain is None:
+                        st.error("Failed to initialize RAG chain. Please check the URL and try again.")
+                    else:
+                        answer = st.session_state.rag_chain.invoke({"query": question})
+                        st.success("✅ Answer:")
+                        st.markdown(f"> {answer.get('result', 'No response generated')}")
                 except Exception as e:
                     st.error(f"An error occurred:\n\n{str(e)}")
     if st.button("🗑️ Delete all vectorstores"):

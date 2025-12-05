@@ -68,7 +68,7 @@ Then make sure your code loads it using `os.getenv("OPENROUTER_API_KEY")`.
 ## 🖥️ Usage
 
 ```bash
-streamlit run app/interface.py
+streamlit run main.py
 ```
 
 Then open your browser to the URL shown in the terminal (usually http://localhost:8501).

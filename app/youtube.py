@@ -1,4 +1,3 @@
-from youtube_transcript_api import YouTubeTranscriptApi
 from urllib.parse import urlparse, parse_qs
 
 
@@ -19,17 +18,3 @@ def extract_video_id(url):
             return parsed.path.split("/")[2]
 
     raise ValueError("Invalid YouTube URL format")
-
-
-def get_transcript(url):
-    video_id = extract_video_id(url)
-    if not video_id:
-        raise ValueError("Invalid YouTube URL: could not extract video ID")
-
-    try:
-        transcript = YouTubeTranscriptApi.get_transcript(
-            video_id, languages=["en", "ar", "fr"]
-        )
-        return " ".join([t["text"] for t in transcript])
-    except Exception as e:
-        raise RuntimeError(f"Failed to get transcript: {str(e)}")
